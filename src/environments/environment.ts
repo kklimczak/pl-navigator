@@ -4,5 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  mapTilesUrl: 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2tsaW1jemFrIiwiYSI6ImNqODc1eXV1dDB3djEycXBmYzl0cnFwcWQifQ.DFbrXldp0UqidbUZmKI7Lw'
 };
