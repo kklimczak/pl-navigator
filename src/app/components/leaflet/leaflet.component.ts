@@ -32,12 +32,15 @@ export class LeafletComponent implements AfterViewInit, AfterContentInit {
     const tiles = tileLayer(environment.mapTilesUrl);
 
     this.map.addLayer(tiles);
+
+    this.featureGroups.forEach((fg: FeatureGroupComponent) => {
+      console.log(fg);
+      this.map.addLayer(fg.getFeatureGroup());
+    });
   }
 
   ngAfterContentInit() {
-    this.featureGroups.forEach((fg: FeatureGroupComponent) => {
-      this.map.addLayer(fg.getFeatureGroup());
-    });
+
   }
 
 }
