@@ -8,6 +8,7 @@ import { PolygonComponent } from './components/polygon/polygon.component';
 import { MarkerComponent } from './components/marker/marker.component';
 import {FetchService} from './services/fetch.service';
 import { MapComponent } from './components/map/map.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MapComponent } from './components/map/map.component';
     MapComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [FetchService],
   bootstrap: [AppComponent]

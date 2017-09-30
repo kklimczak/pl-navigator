@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FetchService} from '../../services/fetch.service';
 
 @Component({
   selector: 'app-map',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fetchService: FetchService) { }
 
   ngOnInit() {
+    this.fetchService.getAllBuildings()
+      .subscribe(
+        response => console.log(response)
+      );
   }
 
 }

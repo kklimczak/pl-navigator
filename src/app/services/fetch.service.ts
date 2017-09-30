@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import {HttpClient} from '@angular/common/http';
 import {Building} from '../models/building';
 
@@ -9,12 +10,14 @@ export class FetchService {
   constructor(private http: HttpClient) { }
 
   public getAllBuildings(): Observable<Building[]> {
-    return this.http.get<Map<string, Building>>('https://nav.p.lodz.pl/data/buildings.json')
-        .map((map) => {
+    return this.http.get<object>('./assets/buildings.json')
+        .map((elements) => {
           const buildings = [];
-          map.forEach((element) => {
-            buildings.push(element);
-          });
+          for (const key in elements) {
+            if (elements.hasOwnProperty(key)) {
+              buildings.push(elements[key]);
+            }
+          }
           return buildings;
         });
   }
