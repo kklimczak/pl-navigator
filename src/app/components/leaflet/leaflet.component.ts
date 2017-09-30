@@ -1,16 +1,22 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterContentInit, AfterViewInit, Component, ContentChildren, ElementRef, OnInit, QueryList,
+  ViewChild
+} from '@angular/core';
 import {Map, map, tileLayer} from 'leaflet';
 import {environment} from '../../../environments/environment';
+import {FeatureGroupComponent} from '../feature-group/feature-group.component';
 
 @Component({
   selector: 'app-leaflet',
   templateUrl: './leaflet.component.html',
   styleUrls: ['./leaflet.component.scss']
 })
-export class LeafletComponent implements AfterViewInit {
+export class LeafletComponent implements AfterViewInit, AfterContentInit {
 
   @ViewChild('map') mapContainer: ElementRef;
   private map: Map;
+
+  @ContentChildren(FeatureGroupComponent) featureGroups: QueryList<FeatureGroupComponent>;
 
   constructor() { }
 
@@ -26,6 +32,12 @@ export class LeafletComponent implements AfterViewInit {
     const tiles = tileLayer(environment.mapTilesUrl);
 
     this.map.addLayer(tiles);
+  }
+
+  ngAfterContentInit() {
+    this.featureGroups.forEach((fg: FeatureGroupComponent) => {
+      this.map.addLayer(fg.getFeatureGroup());
+    });
   }
 
 }
