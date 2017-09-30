@@ -1,7 +1,10 @@
+@import "styles/colors";
+
 :host {
   .header {
     background-color: white;
     padding: 15px;
+    color: $primary;
   }
   .main {
     background: #eee;
