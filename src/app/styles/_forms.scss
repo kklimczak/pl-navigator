@@ -1,0 +1,7 @@
+@mixin foundation-cm-forms() {
+  input {
+    &.no-margin-bottom {
+      margin-bottom: 0;
+    }
+  }
+}

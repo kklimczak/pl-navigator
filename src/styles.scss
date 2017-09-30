@@ -3,6 +3,7 @@
 @import "app/styles/settings";
 
 @import "app/styles/leaflet";
+@import "app/styles/forms";
 
 @import "../node_modules/foundation-sites/scss/foundation";
 
@@ -12,3 +13,4 @@
 
 @include foundation-everything;
 @include leaflet-cm-styles;
+@include foundation-cm-forms;

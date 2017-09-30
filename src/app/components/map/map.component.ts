@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FetchService} from '../../services/fetch.service';
 import {Building} from '../../models/building';
 import {divIcon} from 'leaflet';
+import {PolygonComponent} from '../polygon/polygon.component';
 
 @Component({
   selector: 'app-map',
@@ -25,6 +26,10 @@ export class MapComponent implements OnInit {
 
   createEntranceIcon() {
     return this.createIcon('sign-in', [20, 20], 'entrance');
+  }
+
+  displayInfoAboutBuilding(polygon: PolygonComponent) {
+    alert(JSON.stringify(polygon.coordinates));
   }
 
   ngOnInit() {
