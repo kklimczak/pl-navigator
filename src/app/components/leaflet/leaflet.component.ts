@@ -34,7 +34,6 @@ export class LeafletComponent implements AfterViewInit, AfterContentInit {
     this.map.addLayer(tiles);
 
     this.featureGroups.forEach((fg: FeatureGroupComponent) => {
-      console.log(fg);
       this.map.addLayer(fg.getFeatureGroup());
     });
   }

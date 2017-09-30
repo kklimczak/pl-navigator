@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Polygon, polygon} from 'leaflet';
 
 @Component({
@@ -6,18 +6,28 @@ import {Polygon, polygon} from 'leaflet';
   templateUrl: './polygon.component.html',
   styleUrls: ['./polygon.component.scss']
 })
-export class PolygonComponent implements OnInit {
+export class PolygonComponent implements OnInit, OnChanges {
 
+  @Input() coordinates: [number, number][];
   private layer: Polygon;
 
   constructor() { }
 
   getLayer(): Polygon {
+    console.log(this.layer);
     return this.layer;
   }
 
   ngOnInit() {
-    this.layer = polygon([[51.748727, 19.455349], [51.727, 19.455], [51.648727, 19.2], [51.748727, 19.455349]]);
+
+  }
+
+  ngOnChanges() {
+    if (this.coordinates) {
+      this.layer = polygon([this.coordinates], {
+        color: 'red'
+      });
+    }
   }
 
 }

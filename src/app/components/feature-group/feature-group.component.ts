@@ -28,9 +28,17 @@ export class FeatureGroupComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this.polygons.forEach((polygon: PolygonComponent) => {
-      this.featureGroup.addLayer(polygon.getLayer());
-    });
+    this.polygons.changes.subscribe(
+      (changes: QueryList<PolygonComponent>) => {
+        changes.forEach((polygon: PolygonComponent) => {
+          this.featureGroup.addLayer(polygon.getLayer());
+        });
+      }
+    );
+
+    // this.polygons.forEach((polygon: PolygonComponent) => {
+    //   this.featureGroup.addLayer(polygon.getLayer());
+    // });
 
     this.markers.forEach((marker: MarkerComponent) => {
       this.featureGroup.addLayer(marker.getLayer());

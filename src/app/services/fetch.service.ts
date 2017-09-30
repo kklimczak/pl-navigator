@@ -15,6 +15,18 @@ export class FetchService {
           const buildings = [];
           for (const key in elements) {
             if (elements.hasOwnProperty(key)) {
+              const geometry = [];
+              (elements[key] as Building).geometry.forEach((point: [number, number]) => {
+                geometry.push(point.reverse());
+              });
+              (elements[key] as Building).geometry = geometry;
+
+              const entries = [];
+              (elements[key] as Building).entries.forEach((point: [number, number]) => {
+                entries.push(point.reverse());
+              });
+              (elements[key] as Building).entries = entries;
+
               buildings.push(elements[key]);
             }
           }
