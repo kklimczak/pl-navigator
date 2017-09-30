@@ -2,6 +2,8 @@
 
 @import "app/styles/settings";
 
+@import "app/styles/leaflet";
+
 @import "../node_modules/foundation-sites/scss/foundation";
 
 @import "../node_modules/font-awesome/css/font-awesome.min.css";
@@ -9,3 +11,4 @@
 @import "../node_modules/leaflet/dist/leaflet.css";
 
 @include foundation-everything;
+@include leaflet-cm-styles;
