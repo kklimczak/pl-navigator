@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {divIcon, Marker, marker} from 'leaflet';
+import {Component, Input, OnInit} from '@angular/core';
+import {divIcon, Icon, Marker, marker} from 'leaflet';
 
 @Component({
   selector: 'app-marker',
@@ -8,6 +8,8 @@ import {divIcon, Marker, marker} from 'leaflet';
 })
 export class MarkerComponent implements OnInit {
 
+  @Input() coordinates: [number, number];
+  @Input() icon: Icon;
   private layer: Marker;
 
   getLayer(): Marker {
@@ -17,13 +19,8 @@ export class MarkerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.layer = marker([51.748727, 19.455349], {
-      icon: divIcon({
-        html: '<div class="marker"><span class="fa fa-graduation-cap fa-lg"></span></div>',
-        className: 'marker-wrapper',
-        iconAnchor: [20, 20],
-        iconSize: [40, 40]
-      })
+    this.layer = marker(this.coordinates, {
+      icon: this.icon
     });
   }
 

@@ -36,6 +36,14 @@ export class FeatureGroupComponent implements OnInit, AfterContentInit {
       }
     );
 
+    this.markers.changes.subscribe(
+      (changes: QueryList<MarkerComponent>) => {
+        changes.forEach((marker: MarkerComponent) => {
+          this.featureGroup.addLayer(marker.getLayer());
+        });
+      }
+    );
+
     // this.polygons.forEach((polygon: PolygonComponent) => {
     //   this.featureGroup.addLayer(polygon.getLayer());
     // });

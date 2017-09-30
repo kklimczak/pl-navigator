@@ -1,19 +1,23 @@
 @import "colors";
 
+@mixin marker($size, $color, $bg-color) {
+  display: flex;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $bg-color;
+  color: $color;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0.3em 0.5em -0.2em rgba($bg-color, 1),
+    0 1em 2em -0.75em rgba($bg-color, 0.75),
+    0 1em 3em -0.5em rgba($bg-color, 0.5),
+    0 3em 3em -0.25em rgba($bg-color, 0.2);
+}
+
 @mixin leaflet-cm-styles() {
-  .marker {
-    display: flex;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: $primary;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    box-shadow:
-      0 0.3em 0.5em -0.2em rgba(100,100,100,1),
-      0 1em 2em -0.75em rgba(100,100,100,0.75),
-      0 1em 3em -0.5em rgba(100,100,100,0.5),
-      0 3em 3em -0.25em rgba(100,100,100,0.2);
+  .entrance {
+    @include marker(20px, white, #304187);
   }
 }

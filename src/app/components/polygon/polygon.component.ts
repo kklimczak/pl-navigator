@@ -14,7 +14,6 @@ export class PolygonComponent implements OnInit, OnChanges {
   constructor() { }
 
   getLayer(): Polygon {
-    console.log(this.layer);
     return this.layer;
   }
 
@@ -25,7 +24,11 @@ export class PolygonComponent implements OnInit, OnChanges {
   ngOnChanges() {
     if (this.coordinates) {
       this.layer = polygon([this.coordinates], {
-        color: 'red'
+        weight: 1,
+        opacity: 1,
+        color: '#304187',
+        fillOpacity: 0.6,
+        fillColor: '#cb2025'
       });
     }
   }
