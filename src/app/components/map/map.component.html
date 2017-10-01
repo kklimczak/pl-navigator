@@ -1,6 +1,12 @@
-<app-sidebar [hidden]="hiddenSidebar"></app-sidebar>
+<app-sidebar [hidden]="hiddenSidebar" (onActionButtonClick)="closeSidebar()">
+  <h5>{{selectedBuilding?.name}}</h5>
+</app-sidebar>
 <app-leaflet>
   <app-feature-group>
-    <app-polygon *ngFor="let building of buildings" [coordinates]="building.geometry" (onClick)="displayInfoAboutBuilding($event)"></app-polygon>
+    <app-polygon *ngFor="let building of buildings" [properties]="building"
+                 [coordinates]="building.geometry" (onClick)="displayInfoAboutBuilding($event)"></app-polygon>
+  </app-feature-group>
+  <app-feature-group>
+    <app-marker *ngFor="let entry of selectedBuilding?.entries" [coordinates]="entry" [icon]="createEntranceIcon()"></app-marker>
   </app-feature-group>
 </app-leaflet>

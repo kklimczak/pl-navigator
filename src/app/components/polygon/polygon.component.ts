@@ -9,6 +9,7 @@ import {Polygon, polygon} from 'leaflet';
 export class PolygonComponent implements OnInit, OnChanges {
 
   @Input() coordinates: [number, number][];
+  @Input() properties: any;
 
   @Output() onClick: EventEmitter<PolygonComponent> = new EventEmitter();
 

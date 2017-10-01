@@ -38,6 +38,7 @@ export class FeatureGroupComponent implements OnInit, AfterContentInit {
 
     this.markers.changes.subscribe(
       (changes: QueryList<MarkerComponent>) => {
+        this.featureGroup.clearLayers();
         changes.forEach((marker: MarkerComponent) => {
           this.featureGroup.addLayer(marker.getLayer());
         });
@@ -48,9 +49,9 @@ export class FeatureGroupComponent implements OnInit, AfterContentInit {
     //   this.featureGroup.addLayer(polygon.getLayer());
     // });
 
-    this.markers.forEach((marker: MarkerComponent) => {
-      this.featureGroup.addLayer(marker.getLayer());
-    });
+    // this.markers.forEach((marker: MarkerComponent) => {
+    //   this.featureGroup.addLayer(marker.getLayer());
+    // });
   }
 
 }

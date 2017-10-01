@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FetchService} from '../../services/fetch.service';
 import {Building} from '../../models/building';
-import {divIcon} from 'leaflet';
+import {divIcon, latLngBounds} from 'leaflet';
 import {PolygonComponent} from '../polygon/polygon.component';
 import {MapService} from '../../services/map.service';
 
@@ -14,6 +14,7 @@ export class MapComponent implements OnInit {
 
   public buildings: Building[] = [];
   public hiddenSidebar = true;
+  public selectedBuilding: Building;
 
   constructor(private fetchService: FetchService, private mapService: MapService) { }
 
@@ -32,6 +33,7 @@ export class MapComponent implements OnInit {
 
   displayInfoAboutBuilding(polygon: PolygonComponent) {
     this.hiddenSidebar = false;
+    this.selectedBuilding = polygon.properties;
 
     const mq: MediaQueryList = window.matchMedia('screen and (max-width: 640px)');
     this.mapService.getMap().flyToBounds(polygon.getLayer().getBounds(), {
@@ -40,6 +42,12 @@ export class MapComponent implements OnInit {
 
 
     // this.mapService.getMap().on('click', this.onMapClick, this);
+  }
+
+  closeSidebar() {
+    this.hiddenSidebar = true;
+    this.mapService.getMap().flyToBounds(latLngBounds(this.selectedBuilding.geometry));
+    this.selectedBuilding = null;
   }
 
   onMapClick() {
