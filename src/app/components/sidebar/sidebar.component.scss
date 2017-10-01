@@ -1,0 +1,44 @@
+@import "../../styles/colors";
+@import '../../../../node_modules/foundation-sites/scss/util/unit';
+@import '../../../../node_modules/foundation-sites/scss/util/breakpoint';
+@import '../../../../node_modules/foundation-sites/scss/util/color';
+@import '../../../../node_modules/foundation-sites/scss/util/mixins';
+@import '../../../../node_modules/foundation-sites/scss/util/selector';
+@import '../../../../node_modules/foundation-sites/scss/util/util';
+@import '../../../../node_modules/foundation-sites/scss/util/value';
+
+$bg-color: #aaa;
+
+:host {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  z-index: 1200;
+  background: white;
+  transition: 0.3s ease;
+  @include breakpoint(medium) {
+    top: 15px;
+    right: 15px;
+    width: 300px;
+    &.hidden {
+      right: -315px;
+    }
+  }
+  @include breakpoint(small only) {
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    height: 300px;
+    &.hidden {
+      bottom: -300px;
+    }
+  }
+  .header {
+    background-color: $primary;
+    padding: 5px 10px;
+    color: white;
+  }
+  .content {
+    padding: 15px 10px;
+  }
+}

@@ -5,6 +5,7 @@ import {
 import {Map, map, tileLayer} from 'leaflet';
 import {environment} from '../../../environments/environment';
 import {FeatureGroupComponent} from '../feature-group/feature-group.component';
+import {MapService} from '../../services/map.service';
 
 @Component({
   selector: 'app-leaflet',
@@ -18,7 +19,7 @@ export class LeafletComponent implements AfterViewInit, AfterContentInit {
 
   @ContentChildren(FeatureGroupComponent) featureGroups: QueryList<FeatureGroupComponent>;
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngAfterViewInit() {
     this.map = map(
@@ -28,6 +29,8 @@ export class LeafletComponent implements AfterViewInit, AfterContentInit {
         zoom: 15
       }
     );
+
+    this.mapService.setMap(this.map);
 
     const tiles = tileLayer(environment.mapTilesUrl);
 

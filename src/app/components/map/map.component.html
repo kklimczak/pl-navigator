@@ -1,3 +1,4 @@
+<app-sidebar [hidden]="hiddenSidebar"></app-sidebar>
 <app-leaflet>
   <app-feature-group>
     <app-polygon *ngFor="let building of buildings" [coordinates]="building.geometry" (onClick)="displayInfoAboutBuilding($event)"></app-polygon>

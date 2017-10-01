@@ -3,6 +3,7 @@ import {FetchService} from '../../services/fetch.service';
 import {Building} from '../../models/building';
 import {divIcon} from 'leaflet';
 import {PolygonComponent} from '../polygon/polygon.component';
+import {MapService} from '../../services/map.service';
 
 @Component({
   selector: 'app-map',
@@ -12,8 +13,9 @@ import {PolygonComponent} from '../polygon/polygon.component';
 export class MapComponent implements OnInit {
 
   public buildings: Building[] = [];
+  public hiddenSidebar = true;
 
-  constructor(private fetchService: FetchService) { }
+  constructor(private fetchService: FetchService, private mapService: MapService) { }
 
   private createIcon(icon: string, size: [number, number], className: string) {
     return divIcon({
@@ -29,7 +31,20 @@ export class MapComponent implements OnInit {
   }
 
   displayInfoAboutBuilding(polygon: PolygonComponent) {
-    alert(JSON.stringify(polygon.coordinates));
+    this.hiddenSidebar = false;
+
+    const mq: MediaQueryList = window.matchMedia('screen and (max-width: 640px)');
+    this.mapService.getMap().flyToBounds(polygon.getLayer().getBounds(), {
+      paddingBottomRight: mq.matches ? [0, 300] : [300, 0]
+    });
+
+
+    // this.mapService.getMap().on('click', this.onMapClick, this);
+  }
+
+  onMapClick() {
+    this.hiddenSidebar = true;
+    // this.mapService.getMap().off('click', this.onMapClick, this);
   }
 
   ngOnInit() {

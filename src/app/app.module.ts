@@ -9,6 +9,8 @@ import { MarkerComponent } from './components/marker/marker.component';
 import {FetchService} from './services/fetch.service';
 import { MapComponent } from './components/map/map.component';
 import {HttpClientModule} from '@angular/common/http';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import {MapService} from './services/map.service';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,14 @@ import {HttpClientModule} from '@angular/common/http';
     FeatureGroupComponent,
     PolygonComponent,
     MarkerComponent,
-    MapComponent
+    MapComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule
   ],
-  providers: [FetchService],
+  providers: [FetchService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
