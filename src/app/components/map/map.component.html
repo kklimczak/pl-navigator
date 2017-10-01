@@ -1,5 +1,23 @@
 <app-sidebar [hidden]="hiddenSidebar" (onActionButtonClick)="closeSidebar()">
-  <h5>{{selectedBuilding?.name}}</h5>
+  <div class="grid-x">
+    <div class="small-2 medium-3 cell text-center">
+      <h2><span class="fa fa-building"></span></h2>
+    </div>
+    <div class="small-10 medium-9 cell">
+      <h2>{{selectedBuilding?.name}}</h2>
+    </div>
+
+    <div class="small-2 medium-3 cell text-center">
+      <h2><small>
+        <span class="fa fa-compass"></span>
+      </small></h2>
+    </div>
+    <div class="small-10 medium-9 cell">
+      <h2><small>
+        {{selectedBuilding?.address}}
+      </small></h2>
+    </div>
+  </div>
 </app-sidebar>
 <app-leaflet>
   <app-feature-group>

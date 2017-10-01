@@ -27,12 +27,14 @@ $bg-color: #aaa;
   z-index: 1200;
   background: white;
   transition: 0.6s ease;
+  box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
   @include breakpoint(medium) {
     top: 15px;
     right: 15px;
     width: 300px;
+    border-radius: 3px;
     &.hidden {
-      right: -315px;
+      right: -350px;
     }
   }
   @include breakpoint(small only) {
@@ -49,12 +51,18 @@ $bg-color: #aaa;
     position: relative;
     .action {
       position: absolute;
-      top: -25px;
-      right: 15px;
       outline: none;
       border-bottom: 1px solid rgba(0, 0, 0, 0.2);
       box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
       @include marker(50px, white, $primary);
+      @include breakpoint(small only) {
+        top: -25px;
+        right: 15px;
+      }
+      @include breakpoint(medium) {
+        top: 15px;
+        left: -25px;
+      }
     }
   }
 }

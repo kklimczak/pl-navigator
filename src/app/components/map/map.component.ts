@@ -34,25 +34,34 @@ export class MapComponent implements OnInit {
   displayInfoAboutBuilding(polygon: PolygonComponent) {
     this.hiddenSidebar = false;
     this.selectedBuilding = polygon.properties;
+    this.setCenterPaddingByMediaQueries(polygon);
+    this.disableMapInteraction();
+  }
 
+  private setCenterPaddingByMediaQueries(polygon: PolygonComponent) {
     const mq: MediaQueryList = window.matchMedia('screen and (max-width: 640px)');
     this.mapService.getMap().flyToBounds(polygon.getLayer().getBounds(), {
       paddingBottomRight: mq.matches ? [0, 300] : [300, 0]
     });
+  }
 
-
-    // this.mapService.getMap().on('click', this.onMapClick, this);
+  private disableMapInteraction() {
+    this.mapService.getMap().dragging.disable();
+    this.mapService.getMap().scrollWheelZoom.disable();
+    this.mapService.getMap().doubleClickZoom.disable();
   }
 
   closeSidebar() {
     this.hiddenSidebar = true;
     this.mapService.getMap().flyToBounds(latLngBounds(this.selectedBuilding.geometry));
     this.selectedBuilding = null;
+    this.enableMapInteraction();
   }
 
-  onMapClick() {
-    this.hiddenSidebar = true;
-    // this.mapService.getMap().off('click', this.onMapClick, this);
+  private enableMapInteraction() {
+    this.mapService.getMap().dragging.enable();
+    this.mapService.getMap().scrollWheelZoom.enable();
+    this.mapService.getMap().doubleClickZoom.enable();
   }
 
   ngOnInit() {
