@@ -16,8 +16,29 @@
     0 3em 3em -0.25em rgba($bg-color, 0.2);
 }
 
+@mixin zoom-control-style() {
+  font-size: 40px;
+  font-weight: 300;
+  border: none;
+  text-indent: 0;
+  font-family: "Source Sans Pro";
+  margin-bottom: 10px;
+}
+
 @mixin leaflet-cm-styles() {
   .entrance {
     @include marker(20px, white, #304187);
+  }
+
+  .leaflet-control-container .leaflet-control-zoom.leaflet-bar {
+    border: none;
+    .leaflet-control-zoom-in {
+      @include zoom-control-style;
+      @include marker(40px, #222, #ccc)
+    }
+    .leaflet-control-zoom-out {
+      @include zoom-control-style;
+      @include marker(40px, #222, #ccc)
+    }
   }
 }

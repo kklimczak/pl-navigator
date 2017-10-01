@@ -2,6 +2,7 @@
 
 @import "app/styles/settings";
 
+@import "../node_modules/leaflet/dist/leaflet.css";
 @import "app/styles/leaflet";
 @import "app/styles/forms";
 
@@ -9,7 +10,6 @@
 
 @import "../node_modules/font-awesome/css/font-awesome.min.css";
 
-@import "../node_modules/leaflet/dist/leaflet.css";
 
 @include foundation-everything;
 @include leaflet-cm-styles;
