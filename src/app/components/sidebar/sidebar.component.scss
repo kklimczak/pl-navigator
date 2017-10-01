@@ -9,13 +9,24 @@
 
 $bg-color: #aaa;
 
+@mixin marker($size, $color, $bg-color) {
+  display: flex;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $bg-color;
+  color: $color;
+  align-items: center;
+  justify-content: center;
+}
+
 :host {
   position: absolute;
   display: flex;
   flex-flow: column;
   z-index: 1200;
   background: white;
-  transition: 0.3s ease;
+  transition: 0.6s ease;
   @include breakpoint(medium) {
     top: 15px;
     right: 15px;
@@ -30,15 +41,20 @@ $bg-color: #aaa;
     right: 0;
     height: 300px;
     &.hidden {
-      bottom: -300px;
+      bottom: -350px;
     }
-  }
-  .header {
-    background-color: $primary;
-    padding: 5px 10px;
-    color: white;
   }
   .content {
     padding: 15px 10px;
+    position: relative;
+    .action {
+      position: absolute;
+      top: -25px;
+      right: 15px;
+      outline: none;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+      @include marker(50px, white, $primary);
+    }
   }
 }

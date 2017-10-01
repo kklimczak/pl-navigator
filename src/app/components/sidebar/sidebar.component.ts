@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,11 +9,17 @@ export class SidebarComponent implements OnInit {
 
   @Input() hidden: boolean;
 
+  @Output() onActionButtonClick: EventEmitter<any> = new EventEmitter();
+
   @HostBinding('class') get hidePannel() {
     return this.hidden ? 'hidden' : '';
   }
 
   constructor() { }
+
+  actionButtonClick() {
+    this.onActionButtonClick.emit();
+  }
 
   ngOnInit() {
   }
