@@ -1,6 +1,6 @@
 @import "colors";
 
-@mixin marker($size, $color, $bg-color) {
+@mixin marker($size, $color, $bg-color, $shadow) {
   display: flex;
   width: $size;
   height: $size;
@@ -9,11 +9,7 @@
   color: $color;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    0 0.3em 0.5em -0.2em rgba($bg-color, 1),
-    0 1em 2em -0.75em rgba($bg-color, 0.75),
-    0 1em 3em -0.5em rgba($bg-color, 0.5),
-    0 3em 3em -0.25em rgba($bg-color, 0.2);
+  box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
 }
 
 @mixin zoom-control-style() {
@@ -27,18 +23,18 @@
 
 @mixin leaflet-cm-styles() {
   .entrance {
-    @include marker(20px, white, #304187);
+    @include marker(20px, white, #304187, #304187);
   }
 
   .leaflet-control-container .leaflet-control-zoom.leaflet-bar {
     border: none;
     .leaflet-control-zoom-in {
       @include zoom-control-style;
-      @include marker(40px, #222, #ccc)
+      @include marker(40px, #222, white, #222)
     }
     .leaflet-control-zoom-out {
       @include zoom-control-style;
-      @include marker(40px, #222, #ccc)
+      @include marker(40px, #222, white, #222)
     }
   }
 }

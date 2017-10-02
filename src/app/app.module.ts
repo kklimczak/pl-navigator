@@ -11,6 +11,7 @@ import { MapComponent } from './components/map/map.component';
 import {HttpClientModule} from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {MapService} from './services/map.service';
+import { NaviControlComponent } from './components/navi-control/navi-control.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MapService} from './services/map.service';
     PolygonComponent,
     MarkerComponent,
     MapComponent,
-    SidebarComponent
+    SidebarComponent,
+    NaviControlComponent
   ],
   imports: [
     BrowserModule,

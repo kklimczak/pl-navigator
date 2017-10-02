@@ -41,9 +41,9 @@ $bg-color: #aaa;
     width: 100%;
     bottom: 0;
     right: 0;
-    height: 300px;
+    height: 40vh;
     &.hidden {
-      bottom: -350px;
+      bottom: -45vh;
     }
   }
   .content {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FetchService} from '../../services/fetch.service';
 import {Building} from '../../models/building';
 import {divIcon, latLngBounds} from 'leaflet';
@@ -36,12 +36,13 @@ export class MapComponent implements OnInit {
     this.selectedBuilding = polygon.properties;
     this.setCenterPaddingByMediaQueries(polygon);
     this.disableMapInteraction();
+    this.mapService.getMap().on('zoomstart', this.closeSidebar, this);
   }
 
   private setCenterPaddingByMediaQueries(polygon: PolygonComponent) {
     const mq: MediaQueryList = window.matchMedia('screen and (max-width: 640px)');
     this.mapService.getMap().flyToBounds(polygon.getLayer().getBounds(), {
-      paddingBottomRight: mq.matches ? [0, 300] : [300, 0]
+      paddingBottomRight: mq.matches ? [0, 250] : [300, 0],
     });
   }
 
@@ -56,6 +57,7 @@ export class MapComponent implements OnInit {
     this.mapService.getMap().flyToBounds(latLngBounds(this.selectedBuilding.geometry));
     this.selectedBuilding = null;
     this.enableMapInteraction();
+    this.mapService.getMap().off('zoomstart', this.closeSidebar, this);
   }
 
   private enableMapInteraction() {

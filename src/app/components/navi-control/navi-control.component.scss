@@ -1,0 +1,27 @@
+@mixin marker($size, $color, $bg-color, $shadow) {
+  display: flex;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-color: $bg-color;
+  color: $color;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  &:disabled {
+    color: lighten($color, 50%);
+    background-color: darken($bg-color, 5%);
+  }
+}
+
+:host {
+  position: absolute;
+  left: 10px;
+  top: 110px;
+  z-index: 1300;
+  .home-button {
+    margin-bottom: 10px;
+    outline: none;
+    @include marker(40px, #222, white, #222)
+  }
+}
