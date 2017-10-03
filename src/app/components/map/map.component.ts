@@ -41,7 +41,6 @@ export class MapComponent implements OnInit {
     this.selectedBuilding = polygon.properties;
     this.setCenterPaddingByMediaQueries(polygon);
     this.disableMapInteraction();
-    // this.mapService.getMap().on('zoomstart', this.closeSidebar, this);
   }
 
   private setCenterPaddingByMediaQueries(polygon: PolygonComponent) {
@@ -60,7 +59,6 @@ export class MapComponent implements OnInit {
   closeSidebar() {
     this.mapService.getMap().flyToBounds(latLngBounds(this.selectedBuilding.geometry));
     this.clearSelection();
-    // this.mapService.getMap().off('zoomstart', this.closeSidebar, this);
   }
 
   clearSelection() {
