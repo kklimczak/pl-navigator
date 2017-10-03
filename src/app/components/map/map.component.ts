@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FetchService} from '../../services/fetch.service';
 import {Building} from '../../models/building';
-import {divIcon, latLngBounds} from 'leaflet';
+import {divIcon, LatLng, latLngBounds} from 'leaflet';
 import {PolygonComponent} from '../polygon/polygon.component';
 import {MapService} from '../../services/map.service';
 
@@ -15,6 +15,7 @@ export class MapComponent implements OnInit {
   public buildings: Building[] = [];
   public hiddenSidebar = true;
   public selectedBuilding: Building;
+  public location: LatLng;
 
   constructor(private fetchService: FetchService, private mapService: MapService) { }
 
@@ -31,12 +32,16 @@ export class MapComponent implements OnInit {
     return this.createIcon('sign-in', [20, 20], 'entrance');
   }
 
+  createLocationIcon() {
+    return this.createIcon('dot-circle-o', [20, 20], 'location');
+  }
+
   displayInfoAboutBuilding(polygon: PolygonComponent) {
     this.hiddenSidebar = false;
     this.selectedBuilding = polygon.properties;
     this.setCenterPaddingByMediaQueries(polygon);
     this.disableMapInteraction();
-    this.mapService.getMap().on('zoomstart', this.closeSidebar, this);
+    // this.mapService.getMap().on('zoomstart', this.closeSidebar, this);
   }
 
   private setCenterPaddingByMediaQueries(polygon: PolygonComponent) {
@@ -53,17 +58,26 @@ export class MapComponent implements OnInit {
   }
 
   closeSidebar() {
-    this.hiddenSidebar = true;
     this.mapService.getMap().flyToBounds(latLngBounds(this.selectedBuilding.geometry));
+    this.clearSelection();
+    // this.mapService.getMap().off('zoomstart', this.closeSidebar, this);
+  }
+
+  clearSelection() {
+    this.hiddenSidebar = true;
     this.selectedBuilding = null;
     this.enableMapInteraction();
-    this.mapService.getMap().off('zoomstart', this.closeSidebar, this);
   }
 
   private enableMapInteraction() {
     this.mapService.getMap().dragging.enable();
     this.mapService.getMap().scrollWheelZoom.enable();
     this.mapService.getMap().doubleClickZoom.enable();
+  }
+
+  setLocation(latlng: LatLng) {
+    this.location = latlng;
+    this.clearSelection();
   }
 
   ngOnInit() {

@@ -26,6 +26,11 @@
     @include marker(20px, white, #304187, #304187);
   }
 
+  .location {
+    @include marker(20px, white, #304187, #304187);
+    box-shadow: none;
+  }
+
   .leaflet-control-container .leaflet-control-zoom.leaflet-bar {
     border: none;
     .leaflet-control-zoom-in {

@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {Control, DomUtil, Map} from 'leaflet';
+import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Control, DomUtil, LatLng, latLng, Map} from 'leaflet';
 import {MapService} from '../../services/map.service';
 
 @Component({
@@ -9,17 +9,23 @@ import {MapService} from '../../services/map.service';
 })
 export class NaviControlComponent implements OnInit {
 
+  @Output() onLocationDetected: EventEmitter<LatLng> = new EventEmitter();
+  @Output() onHomePositionSet: EventEmitter<any> = new EventEmitter();
+
   constructor(private mapService: MapService) {
 
   }
 
   setHomePosition() {
     this.mapService.getMap().flyTo([51.748727, 19.455349], 15);
+    this.onHomePositionSet.emit();
   }
 
   setLocationBasedOnGeolocation() {
     navigator.geolocation.getCurrentPosition((position => {
-      this.mapService.getMap().flyTo([position.coords.latitude, position.coords.longitude]);
+      const latlng = latLng([position.coords.latitude, position.coords.longitude]);
+      this.mapService.getMap().flyTo(latlng, 18);
+      this.onLocationDetected.emit(latlng);
     }));
   }
 

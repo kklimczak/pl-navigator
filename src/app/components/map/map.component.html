@@ -27,5 +27,8 @@
   <app-feature-group>
     <app-marker *ngFor="let entry of selectedBuilding?.entries" [coordinates]="entry" [icon]="createEntranceIcon()"></app-marker>
   </app-feature-group>
-  <app-navi-control></app-navi-control>
+  <app-feature-group>
+    <app-marker *ngIf="location" [coordinates]="location" [icon]="createLocationIcon()"></app-marker>
+  </app-feature-group>
+  <app-navi-control (onLocationDetected)="setLocation($event)" (onHomePositionSet)="clearSelection()"></app-navi-control>
 </app-leaflet>
