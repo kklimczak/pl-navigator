@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FetchService} from '../../services/fetch.service';
 import {Building} from '../../models/building';
-import {divIcon, LatLng, latLngBounds} from 'leaflet';
+import {divIcon, LatLng, latLngBounds, polygon} from 'leaflet';
 import {PolygonComponent} from '../polygon/polygon.component';
 import {MapService} from '../../services/map.service';
 
@@ -15,6 +15,7 @@ export class MapComponent implements OnInit {
   public buildings: Building[] = [];
   public hiddenSidebar = true;
   public selectedBuilding: Building;
+  public selectedPolygon: PolygonComponent;
   public location: LatLng;
 
   constructor(private fetchService: FetchService, private mapService: MapService) { }
@@ -37,8 +38,13 @@ export class MapComponent implements OnInit {
   }
 
   displayInfoAboutBuilding(polygon: PolygonComponent) {
+    polygon.highlight();
+    if (this.selectedPolygon) {
+      this.selectedPolygon.reset();
+    }
     this.hiddenSidebar = false;
     this.selectedBuilding = polygon.properties;
+    this.selectedPolygon = polygon;
     this.setCenterPaddingByMediaQueries(polygon);
     this.disableMapInteraction();
   }
@@ -65,6 +71,7 @@ export class MapComponent implements OnInit {
     this.hiddenSidebar = true;
     this.selectedBuilding = null;
     this.enableMapInteraction();
+    this.selectedPolygon.reset();
   }
 
   private enableMapInteraction() {
