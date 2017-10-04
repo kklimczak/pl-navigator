@@ -9,6 +9,14 @@
   color: $color;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+@mixin marker-hover($color) {
+  transition: 0.3s ease;
+  &:hover {
+    background-color: $color;
+  }
 }
 
 @mixin simple-shadow() {
@@ -48,11 +56,13 @@
       @include zoom-control-style;
       @include marker(40px, #222, white);
       @include simple-shadow;
+      @include marker-hover(#f5f5f5);
     }
     .leaflet-control-zoom-out {
       @include zoom-control-style;
       @include marker(40px, #222, white);
       @include simple-shadow;
+      @include marker-hover(#f5f5f5);
     }
   }
 }

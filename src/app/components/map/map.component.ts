@@ -71,7 +71,9 @@ export class MapComponent implements OnInit {
     this.hiddenSidebar = true;
     this.selectedBuilding = null;
     this.enableMapInteraction();
-    this.selectedPolygon.reset();
+    if (this.selectedPolygon) {
+      this.selectedPolygon.reset();
+    }
   }
 
   private enableMapInteraction() {
