@@ -13,6 +13,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {MapService} from './services/map.service';
 import { NaviControlComponent } from './components/navi-control/navi-control.component';
 import { HeaderComponent } from './components/header/header.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [FetchService, MapService],
   bootstrap: [AppComponent]
