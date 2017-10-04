@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {MapService} from './services/map.service';
 import { NaviControlComponent } from './components/navi-control/navi-control.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NaviControlComponent } from './components/navi-control/navi-control.com
     MarkerComponent,
     MapComponent,
     SidebarComponent,
-    NaviControlComponent
+    NaviControlComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

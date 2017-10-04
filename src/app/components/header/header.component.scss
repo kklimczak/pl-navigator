@@ -1,0 +1,35 @@
+@import "../../styles/colors";
+@import '../../../../node_modules/foundation-sites/scss/util/unit';
+@import '../../../../node_modules/foundation-sites/scss/util/breakpoint';
+@import '../../../../node_modules/foundation-sites/scss/util/color';
+@import '../../../../node_modules/foundation-sites/scss/util/mixins';
+@import '../../../../node_modules/foundation-sites/scss/util/selector';
+@import '../../../../node_modules/foundation-sites/scss/util/util';
+@import '../../../../node_modules/foundation-sites/scss/util/value';
+
+@mixin simple-shadow() {
+  box-shadow: 0 1px #FFFFFF inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+}
+
+:host {
+  background: white;
+  color: $primary;
+  @include simple-shadow;
+  @include breakpoint(medium) {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1300;
+    width: 300px;
+    border-radius: 3px;
+  }
+  .search-field {
+    padding: 5px 15px;
+    margin-bottom: 0;
+    border: none;
+    font-size: 1.2rem;
+  }
+  .icon {
+    padding: 15px;
+  }
+}
